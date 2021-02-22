@@ -1,4 +1,4 @@
-package edu.escuelaing.arsw.app;
+package edu.eci.arsw.BiblioEci;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

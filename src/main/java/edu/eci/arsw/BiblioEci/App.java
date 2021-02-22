@@ -1,4 +1,4 @@
-package edu.escuelaing.arsw.app;
+package edu.eci.arsw.BiblioEci;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
