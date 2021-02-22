@@ -1,13 +1,15 @@
 package edu.escuelaing.arsw.app;
+import javax.faces.bean.*;
 
-/**
- * Hello world!
- *
- */
+
+
+@ManagedBean(name = "index")
+@ApplicationScoped
 public class App 
-{
+{	
+	
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        System.out.println( "Bienvenido a BiblioEci" );
     }
 }
