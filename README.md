@@ -4,6 +4,12 @@
 ### Sebastián Villamarín Rodríguez
 ### ARSW
 
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://biblioeci.herokuapp.com)
+
+[![CircleCI](https://circleci.com/gh/svillamarin27/CVDS2-LAB6-2020-2.svg?style=svg)](https://app.circleci.com/pipelines/github/svillamarin27/BIBLIOECI)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c42353620eed40daaf4102f82214411e)](https://github.com/settings/installations/14876200)
+
 # Objetivo
 El objetivo del Proyecto es plantear una página web basada en una biblioteca en la cual los usuarios podrán consultar libros de su interés para su respectivo alquiler. 
 
