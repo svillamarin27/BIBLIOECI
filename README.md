@@ -10,6 +10,8 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c42353620eed40daaf4102f82214411e)](https://github.com/settings/installations/14876200)
 
+## Taiga  https://tree.taiga.io/project/davidriverarvd-bibliotecaonline/timeline
+
 # Objetivo
 El objetivo del Proyecto es plantear una página web basada en una biblioteca en la cual los usuarios podrán consultar libros de su interés para su respectivo alquiler. 
 
