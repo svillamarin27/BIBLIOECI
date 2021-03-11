@@ -1,41 +1,41 @@
 
 Create table prestamo (
-	idPrestamo number(10) not null,
-	idUsuario number(10) not null,
-	cantidadDias number(3) not null
+	idPrestamo int not null,
+	idUsuario int not null,
+	cantidadDias int not null
 );
 
 Create table usuario (
 	nombre varchar(30) not null,
-	edad number(2) not null, 
-	cedula number(10) not null, 
-	celular number(10) not null,
-	telefono number(7),
+	edad int not null, 
+	cedula int not null, 
+	celular int not null,
+	telefono int not null,
 	direccion varchar(20) not null, 
 	correo varchar(30) not null
 );
 
 Create table chat (
-	idUsuario number(10) not null,
+	idUsuario int not null,
 	persona boolean not null,
-	idChat number(10) not null, 
+	idChat int not null, 
 	mensaje varchar(99999) not null
 );
 
 Create table cliente (
-	cantPrestamo number(5),
-	cantMulta number(6),
-	idUsuario number(10) not null
+	cantPrestamo int not null,
+	cantMulta int not null,
+	idUsuario int not null
 );
 
 Create table administrador (
-	idUsuario number(10) not null,
-	cantRegistro number(10)
+	idUsuario int not null,
+	cantRegistro int not null
 );
 
 Create table libro (
-	idPrestamo number(10) not null,
-	idLibro number(10) not null,
+	idPrestamo int not null,
+	idLibro int not null,
 	autor varchar(30) not null, 
 	disponible boolean not null, 
 	categoria varchar(30) not null,
@@ -44,27 +44,36 @@ Create table libro (
 );
 
 Create table cientifico(
-	idLibro number(10) not null,
-	volumen number(3)
+	idLibro int not null,
+	volumen int not null
 );
 
 Create table linguistico(
-	idLibro number(10) not null,
-	parte number(3)
+	idLibro int not null,
+	parte int not null
 );
 
 Create table literatura(
-	idLibro number(10) not null,
-	parte number(3)
+	idLibro int not null,
+	parte int not null
 );
 
 Create table bibliografico(
-	idLibro number(10) not null,
-	volumen number(3)
+	idLibro int not null,
+	volumen int not null
 );
 
 
-
+alter table "prestamo" add constraint PK_PRESTAMO primary key(idPrestamo);
+alter table "usuario" add constraint PK_USUARIO primary key(cedula);
+alter table "chat" add constraint PK_CHAT primary key(idChat);
+alter table "cliente" add constraint PK_CLIENTE primary key(idUsuario);
+alter table "administrador" add constraint PK_ADMINISTRADOR primary key(idUsuario);
+alter table "libro" add constraint PK_LIBRO primary key(idLibro);
+alter table "cientifico" add constraint PK_CIENTIFICO primary key(idLibro);
+alter table "linguistico" add constraint PK_LINGUISTICO primary key(idLibro);
+alter table "literatura" add constraint PK_LITERATURA primary key(idLibro);
+alter table "bibliografico" add constraint PK_BIBLIOGRAFICO primary key(idLibro);
 
 
 
