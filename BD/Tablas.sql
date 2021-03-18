@@ -1,4 +1,6 @@
-
+--------------------------
+----------TABLAS----------
+--------------------------
 Create table prestamo (
 	disponible boolean not null,
 	idPrestamo int not null,
@@ -33,6 +35,7 @@ Create table administrador (
 
 Create table libro (
 	idPrestamo int not null,
+	udLibro int not null,
 	nombreLibro varchar(30) not null,
 	autor varchar(30) not null, 
 	disponible boolean not null, 
@@ -43,14 +46,6 @@ Create table libro (
 );
 
 
-
-
-alter table "prestamo" add constraint PK_PRESTAMO primary key(idPrestamo);
-alter table "usuario" add constraint PK_USUARIO primary key(id);
-alter table "chat" add constraint PK_CHAT primary key(idChat);
-alter table "cliente" add constraint PK_CLIENTE primary key(cantPrestamo);
-alter table "administrador" add constraint PK_ADMINISTRADOR primary key(idUsuario);
-alter table "libro" add constraint PK_LIBRO primary key(nombreLibro);
 
 
 

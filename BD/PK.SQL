@@ -1,0 +1,26 @@
+----------------------
+----------PK----------
+----------------------
+ALTER TABLE "prestamo" 
+ADD CONSTRAINT PK_PRESTAMO 
+PRIMARY KEY(idPrestamo);
+
+ALTER TABLE "usuario" 
+ADD CONSTRAINT PK_USUARIO 
+PRIMARY KEY(id);
+
+ALTER TABLE "chat" 
+ADD CONSTRAINT PK_CHAT 
+PRIMARY KEY(idChat);
+
+ALTER TABLE "cliente" 
+ADD CONSTRAINT PK_CLIENTE 
+PRIMARY KEY(cantPrestamo);
+
+ALTER TABLE "administrador" 
+ADD CONSTRAINT PK_ADMINISTRADOR 
+PRIMARY KEY(idUsuario);
+
+ALTER TABLE "libro" 
+ADD CONSTRAINT PK_LIBRO 
+PRIMARY KEY(nombreLibro);
