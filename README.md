@@ -38,7 +38,7 @@ Con nuestra aplicación el usuario tendrá acceso a grandes estanterías de libr
 
 # Diagrama de clases
 
-![image](https://user-images.githubusercontent.com/37603257/110714617-c0ef7a80-81d1-11eb-8f84-05e5ce58289f.png)
+![image](https://user-images.githubusercontent.com/37603257/111557910-9ebea500-875b-11eb-830a-9202f8d34808.png)
 
 # Mockups
 
