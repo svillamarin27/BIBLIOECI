@@ -40,6 +40,14 @@ Con nuestra aplicación el usuario tendrá acceso a grandes estanterías de libr
 
 ![image](https://user-images.githubusercontent.com/37603257/111557910-9ebea500-875b-11eb-830a-9202f8d34808.png)
 
+# Diagrama C&C
+
+![image](https://user-images.githubusercontent.com/37603257/111559225-1ee60a00-875e-11eb-9578-be4eb04be4f8.png)
+
+# Modelo entidad relacion
+
+![image](https://user-images.githubusercontent.com/37603257/111564827-66719380-8768-11eb-8215-42c072d5325b.png)
+
 # Mockups
 
 ### Inicio
