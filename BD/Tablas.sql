@@ -21,16 +21,19 @@ Create table usuario (
 Create table chat (
 	bot boolean not null,
 	persona boolean not null,
-	idChat int not null 
+	idChat int not null,
+	idUsuario int not null
 );
 
 Create table cliente (
 	cantPrestamo int not null,
-	cantMulta int not null
+	cantMulta int not null,
+	idUsuario int not null
 );
 
 Create table administrador (
-	idUsuario int not null
+	idUsuario int not null,
+	cantRegistro int,
 );
 
 Create table libro (
@@ -42,7 +45,9 @@ Create table libro (
 	categoria varchar(30) not null,
 	editorial varchar(30) not null,
 	idioma varchar(15) not null,
-	tipo varchar(30) not null
+	tipo varchar(30) not null,
+	ano int not null,
+	descripcion varchar(5000) not null
 );
 
 

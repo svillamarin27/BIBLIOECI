@@ -15,7 +15,7 @@ PRIMARY KEY(idChat);
 
 ALTER TABLE "cliente" 
 ADD CONSTRAINT PK_CLIENTE 
-PRIMARY KEY(cantPrestamo);
+PRIMARY KEY(idUsuario);
 
 ALTER TABLE "administrador" 
 ADD CONSTRAINT PK_ADMINISTRADOR 
@@ -23,4 +23,5 @@ PRIMARY KEY(idUsuario);
 
 ALTER TABLE "libro" 
 ADD CONSTRAINT PK_LIBRO 
-PRIMARY KEY(nombreLibro);
+PRIMARY KEY(idLibro);
+
