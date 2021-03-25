@@ -1,14 +1,42 @@
 package edu.eci.arsw.BiblioEci.Model;
 
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Date;
+
+@Entity
+@Table(name = "libro")
 public class Libro {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+	
+	@Column(name = "idLibro")
 	private int idLibro;
+	
+	@Column(name = "nombreLibro")
 	private String nombreLibro;
+	
+	@Column(name = "autor")
 	private String autor;
+	
+	@Column(name = "disponible")
 	private Boolean disponible;
+	
+	@Column(name = "categoria")
 	private String categoria;
+	
+	@Column(name = "editorial")
 	private String editorial;
+	
+	@Column(name = "idioma")
 	private String idioma;
+	
+	@Column(name = "tipo")
 	private String tipo;
+	
 	public Libro(int idLibro,String nombreLibro, String autor,Boolean disponible,String categoria,String editorial,String idioma,String tipo) {
 		
 		this.idLibro=idLibro;
