@@ -36,8 +36,19 @@ public class UserController {
 	@GetMapping("usersname/{name}")
 	public ResponseEntity<User> getUsersByName(@PathVariable(value = "name") String userName)
 		throws ResourceNotFoundException{
-		User user = UP.getUsersByName(userName).orElseThrow(() -> new ResourceNotFoundException("User not found for this id:: " + userName));
+		User user = UP.getOptionalUsersByName(userName).orElseThrow(() -> new ResourceNotFoundException("User not found for this name:: " + userName));
 		return ResponseEntity.ok().body(user);
+	}
+	
+	@GetMapping("checkusers/{name}")
+	public boolean checkUsersByName(@PathVariable(value = "name") String userName) throws ResourceNotFoundException{
+		User user = UP.getUsersByName(userName);
+		if (user == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	@PostMapping("addusers")

@@ -1,0 +1,1 @@
+insert into users (names, ages, celphone, phone, adress, email) values ('Daniel', 23, 123, 456, 'Cra 151', 'daniel@mail.com');
