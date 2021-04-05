@@ -2,7 +2,7 @@ $("#boton-usuarios").on("click", validateUsers);
 
 function validateUsers() {
     $.ajax({
-        url: 'http://localhost:8080/user/users',
+        url: 'https://biblioeci.herokuapp.com/user/users',
         success: function(respuesta) {
             console.log(respuesta);
         },
