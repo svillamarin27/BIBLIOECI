@@ -7,7 +7,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
-	<title>$.ajax jQuery</title>
+	<title>BiblioECI</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>BiblioEci &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,7 +82,10 @@
 						
 						<h2>¡¡ Bienvenido a BiblioEci !! Áca podrás consultar los libros que tenemos disponibles para ti </h2>
 						<p>
-							<button id="consultar-libros" href="#" class="btn btn-primary btn-lg btn-hardbound">Consultar Libros</button><button id="boton-usuarios" href="#" class="btn btn-primary btn-lg btn-hardbound">Obtener usuarios</button>
+							<form action="consultaLibros.html">
+								<button id="consultar-libros" href="#consultaLibros.html" class="btn btn-primary btn-lg btn-hardbound">Consultar Libros</button>
+							</form>
+							<button id="boton-usuarios" href="#" class="btn btn-primary btn-lg btn-hardbound">Obtener usuarios</button>
 							<div id="lista-usuarios"></div>
 						</p>
 					</div>
@@ -200,6 +203,7 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./js/apiUsers.js"></script>
+	
 
 	</body>
 </html>
