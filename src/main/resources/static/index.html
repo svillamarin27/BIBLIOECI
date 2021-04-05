@@ -1,14 +1,206 @@
-<html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<title>$.ajax jQuery</title>
-	</head>
 
-	<body>
-        <button id="boton-usuarios">Obtener usuarios</button>
-        <div id="lista-usuarios"></div>
-	</body>
+
+<html lang="es">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<title>$.ajax jQuery</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>BiblioEci &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FreeHTML5.co" />
+
+  <!-- 
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FreeHTML5.co
+		
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	 -->
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'> -->
+	<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+	<!-- Modernizr JS -->
+	
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body style="background-color:#FAF9EC;">
+	
+	<header id="fh5co-header" style="background-image: url(images/fondoo.jpg)">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row" style="margin-top: 5em;">
+				<div class="col-md-12 text-center"> 
+					<h1 id="fh5co-logo" class="cursive-font"><a href="index.html">BiblioEci</a></h1>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					<div class="intro">
+						
+						<h2>¡¡ Bienvenido a BiblioEci !! Áca podrás consultar los libros que tenemos disponibles para ti </h2>
+						<p>
+							<button id="consultar-libros" href="#" class="btn btn-primary btn-lg btn-hardbound">Consultar Libros</button><button id="boton-usuarios" href="#" class="btn btn-primary btn-lg btn-hardbound">Obtener usuarios</button>
+							<div id="lista-usuarios"></div>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<figure class="fh5co-intro-img">
+						<img class="img-1 animate-box" src="images/book_black.png" alt="Free Website Template by FreeHTML5.co">
+						<img class="img-2 animate-box" src="images/book_white.png"i alt="Free Website Template by FreeHTML5.co">
+					</figure>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	
+	<div id="main">
+			
+		<div class="container">
+			
+			<div class="row row-pb-md">
+				<div class="col-md-4">
+					<div class="review text-center">
+						<figure>
+							<img src="images/person_3.jpg" alt="user">
+						</figure>
+						<span>Daniel Vargas </span>
+						<span class="star">
+							
+						</span>
+						<blockquote>
+							<p>Desarrollador web</p>
+						</blockquote>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="review text-center">
+							<figure>
+							<img src="images/person_2.jpg" alt="user">
+						</figure>
+						<span>David Rivera </span>
+						<span class="star">
+							
+						</span>
+						<blockquote>
+							<p>Desarrollador web</p>
+						</blockquote>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="review active text-center">
+						<figure>
+							<img src="images/person_1.jpg" alt="user">
+						</figure>
+						<span>Sebastián Villamarín</span>						
+						<blockquote>
+							<p>Desarrollador web</p>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+			
+		
+		<div id="get-subscribe">
+			<div class="container">
+				<div class="row text-center fh5co-heading">
+					<div class="col-md-8 col-md-offset-2">
+						<h1 class="cursive-font">Ingresar</h1>
+						<p>¿Qué esperas? ¡Ingresa!</p>
+					</div>
+				</div>
+				<div class="get-subscribe">
+					<form class="form-inline">
+						<div class="col-md-4 col-sm-4">
+							<div class="form-group">
+								<!-- boton nombre-->
+								<input type="text" class="form-control" id="user" value="" placeholder="Usuario">
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="form-group">
+								
+								<input type="text" class="form-control" id="pass" value="" placeholder="Contraseña">
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<button id="boton-usuarios" type="submit" class="btn btn-default btn-block">Ingresar</button>
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<footer id="footer">
+			<div class="container">
+				<div class="col-md-12 text-center">
+					<p class="copyright">
+						<small>&copy; 2016. Free HTML5 Template. All Rights Reserved.</small>
+						<em><small>Designed by <a href="http://freehtm5.co" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>. Book image is from <a href="http://graphicburger.com">GraphicBurger</a></small> </em>
+					</p>
+					<ul class="fh5co-social">
+
+						<li><a href="#"><i class="icon-facebook"></i></a></li>
+						<li><a href="#"><i class="icon-twitter"></i></a></li>
+						<li><a href="#"><i class="icon-linkedin"></i></a></li>
+						<li><a href="#"><i class="icon-apple"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</div>
+	
+	
+
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./js/apiUsers.js"></script>
+
+	</body>
 </html>
+
