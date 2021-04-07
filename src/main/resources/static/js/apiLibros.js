@@ -4,9 +4,7 @@ http://localhost:8080/book/books
 */
 
 document.querySelector('#TL-traer-libros').addEventListener('click', availableBooks)
-var qrLastSupper = document.createElement("img");
-qrLastSupper.src = "./images/descarga.jpg";
-document.body.appendChild(qrLastSupper); 
+
 function availableBooks() {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', 'http://localhost:8080/book/books', true);
