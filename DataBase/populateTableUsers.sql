@@ -1,1 +1,2 @@
-insert into users (names, ages, celphone, phone, adress, email) values ('Daniel', 23, 123, 456, 'Cra 151', 'daniel@mail.com');
+insert into users (names, ages, celphone, phone, adress, email, username, passwords) values ('Daniel', 23, 123, 456, 'Cra 151', 'daniel@mail.com', 'daniel', 'daniel123');
+insert into users (names, ages, celphone, phone, adress, email, username, passwords) values ('Sebastian', 23, 123, 456, 'Cra 151', 'daniel@mail.com', 'sebastian', 'sebas123');

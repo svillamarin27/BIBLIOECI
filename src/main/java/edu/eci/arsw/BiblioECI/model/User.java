@@ -22,10 +22,10 @@ public class User {
 	private int id;
 	
 	@Column(name = "celphone")
-	private int celphone;
+	private String celphone;
 	
 	@Column(name = "phone")
-	private int phone;
+	private String phone;
 	
 	@Column(name = "adress")
 	private String adress;
@@ -33,11 +33,17 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
+	@Column(name = "username")
+	private String username;
+	
+	@Column(name = "passwords")
+	private String passwords;
+	
 	public User() {
 		super();
 	}
 
-	public User(String name, int age, int celphone, int phone, String adress, String email) {
+	public User(String name, int age, String celphone, String phone, String adress, String email, String username, String passwords) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -45,6 +51,8 @@ public class User {
 		this.phone = phone;
 		this.adress = adress;
 		this.email = email;
+		this.username = username;
+		this.passwords = passwords;
 	}
 	
 	public String getName() {
@@ -65,16 +73,16 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCelphone() {
+	public String getCelphone() {
 		return celphone;
 	}
-	public void setCelphone(int celphone) {
+	public void setCelphone(String celphone) {
 		this.celphone = celphone;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getAdress() {
@@ -88,5 +96,21 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return passwords;
+	}
+
+	public void setPassword(String passwords) {
+		this.passwords = passwords;
 	}
 }

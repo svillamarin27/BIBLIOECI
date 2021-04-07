@@ -2,10 +2,12 @@ Create table users (
 	names varchar(30) not null,
 	ages int not null, 
 	id serial primary key, 
-	celphone int not null,
-	phone int not null,
+	celphone varchar(10) not null,
+	phone varchar(7) not null,
 	adress varchar(20) not null, 
-	email varchar(30) not null
+	email varchar(30) not null,
+	username varchar(10) UNIQUE not null,
+	passwords varchar(10) not null
 );
 
 create table book(
