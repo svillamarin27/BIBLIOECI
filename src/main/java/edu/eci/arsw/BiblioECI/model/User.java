@@ -39,11 +39,17 @@ public class User {
 	@Column(name = "passwords")
 	private String passwords;
 	
+	@Column(name = "admins")
+	private boolean admins;
+		
+	@Column(name = "bookrent")
+	private boolean bookRent;
+	
 	public User() {
 		super();
 	}
 
-	public User(String name, int age, String celphone, String phone, String adress, String email, String username, String passwords) {
+	public User(String name, int age, String celphone, String phone, String adress, String email, String username, String passwords, boolean admins, boolean bookRent) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -53,6 +59,8 @@ public class User {
 		this.email = email;
 		this.username = username;
 		this.passwords = passwords;
+		this.admins = admins;
+		this.bookRent = bookRent;
 	}
 	
 	public String getName() {
@@ -113,4 +121,22 @@ public class User {
 	public void setPassword(String passwords) {
 		this.passwords = passwords;
 	}
+
+	public boolean isAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(boolean admins) {
+		this.admins = admins;
+	}
+
+	public boolean isBookRent() {
+		return bookRent;
+	}
+
+	public void setBookRent(boolean bookRent) {
+		this.bookRent = bookRent;
+	}
+	
+	
 }

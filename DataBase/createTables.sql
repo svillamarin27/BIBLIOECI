@@ -7,7 +7,9 @@ Create table users (
 	adress varchar(20) not null, 
 	email varchar(30) not null,
 	username varchar(10) UNIQUE not null,
-	passwords varchar(10) not null
+	passwords varchar(10) not null,
+	admins boolean not null,
+	bookrent boolean not null
 );
 
 create table book(

@@ -9,25 +9,38 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     </head>
 
-    <body>
+    <body class="#8d6e63 brown lighten-1">
         <div class="container">
             <div class="section">
-                <button class="btn" id="TL-traer-libros">Traer libros</button>
-                <table>
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Author</th>
-                        <th>Fecha de publicación</th>
-                        <th>Categoria</th>
-                        <th>Editorial</th>
-                        <th>Lenguajes</th>
-                    </tr>
-                    <tbody id="res"></tbody>
-                </table>
+                <div class="row"></div>
+			    <div class="row #efebe9 brown lighten-5">
+                    <div class="row"></div>
+                    <div class="row">
+                        <div class="col s6 ofset-5">
+                            <button onclick="apiLibros.availableBooks()" class="btn #8d6e63 brown lighten-1" >Traer libros</button>
+                        </div>
+                        
+                        <table>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Author</th>
+                                <th>Fecha de publicación</th>
+                                <th>Categoria</th>
+                                <th>Editorial</th>
+                                <th>Lenguajes</th>
+                                <th>Disponibilidad</th>
+                                <th>Sinopsis</th>
+                                <th></th>
+                            </tr>
+                            <tbody id="res"></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-
-      <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="js/apiLibros.js"></script>
     </body>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="js/apiUsuarios.js"></script>
+    <script src="js/apiLibros.js"></script>
+    
   </html>

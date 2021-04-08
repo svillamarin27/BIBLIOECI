@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import edu.eci.arsw.BiblioECI.repository.BookRepository;
+import edu.eci.arsw.BiblioECI.repository.UserRepository;
 import edu.eci.arsw.BiblioECI.exception.ResourceNotFoundException;
 import edu.eci.arsw.BiblioECI.model.Book;
+import edu.eci.arsw.BiblioECI.model.User;
 
 @RestController
 @RequestMapping("/book/")
@@ -21,6 +23,9 @@ public class BookController {
 	
 	@Autowired
 	private BookRepository BP;
+	
+	@Autowired
+	private UserRepository UP;
 	
 	@GetMapping("books")
 	public List<Book> getAllBooks(){
@@ -47,19 +52,25 @@ public class BookController {
 		return this.BP.save(book);
 	}
 	
-	@PutMapping("rentbook/{id}")
-	public ResponseEntity<?> rentBook(@PathVariable(value = "id") int bookId) 
+	@PutMapping("rentbook/{id}/{userid}")
+	public ResponseEntity<?> rentBook(@PathVariable(value = "id") int bookId, @PathVariable(value = "userid") int userId) 
 		throws ResourceNotFoundException{
 		Book book = BP.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:: " + bookId));
-		if(book.isAvailable()) {
-			book.setAvailable(false);
-			BP.save(book);
-			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		List<User> ListUsers = UP.findAll();
+		for(User user: ListUsers) {
+			if(user.getId() == userId && !user.isBookRent() && !user.isAdmins()) {
+				if(book.isAvailable()) {
+					book.setAvailable(false);
+					user.setBookRent(true);
+					UP.save(user);
+					BP.save(book);
+					return new ResponseEntity<>(HttpStatus.ACCEPTED);
+				}
+			}
 		}
-		else {
-			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-		}
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
+	
 	@PutMapping("returnbook/{id}")
 	public ResponseEntity<?> returnBook(@PathVariable(value = "id") int bookId) 
 		throws ResourceNotFoundException{
