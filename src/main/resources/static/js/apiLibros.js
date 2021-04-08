@@ -5,6 +5,7 @@ http://localhost:8080/book/books
 
 const APIUsers = apiUsuarios;
 
+<<<<<<< HEAD
 apiLibros = (function(){
 
     function rentBook(idLibro){
@@ -67,3 +68,32 @@ apiLibros = (function(){
 })();
 
 
+=======
+function availableBooks() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'http://localhost:8080/book/books', true);
+    xhttp.send();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            let libros = JSON.parse(this.responseText);
+            let res = document.querySelector('#res');
+            res.innerHTML = '';
+            
+            for (let item of libros){
+                console.log(item);
+                res.innerHTML += `
+                    <tr>
+                        <td>${item.names}</td>
+                        <td>${item.author}</td>
+                        <td>${item.publication}</td>
+                        <td>${item.category}</td>
+                        <td>${item.editorial}</td>
+                        <td>${item.languages}</td>
+                    </tr>
+                    `
+            }
+        }
+    }
+
+}
+>>>>>>> 33424fb7372c6de0a2e51dfdf1e9aed791162583
