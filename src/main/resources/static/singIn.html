@@ -19,35 +19,40 @@
 				  	<h4 id="title" align="center">Sign In</h4>
 				  	<form>
 						<div class="input-field">
-							<label for="name">Name</label><br>
-							<input id="name" type="text" class="validate" minlength="4" maxlength="30">
+							<label for="names">Name</label><br>
+							<input id="names" type="text" class="validate" minlength="4" maxlength="30">
 						</div>
                         <div class="input-field">
-                            <label for="age">Age</label><br>
-                            <input id="age" type="number" class="validate" minlength="1" maxlength="2">
+                            <label for="ages">Age</label><br>
+                            <input id="ages" type="number" class="validate" minlength="1" maxlength="2">
                         </div>
 						<div class="input-field">
-                            <label for="Celphone">Celphone</label><br>
-                            <input id="Celphone" type="number" class="validate" minlength="5" maxlength="10">
+                            <label for="celphone">Celphone</label><br>
+                            <input id="celphone" type="number" class="validate" minlength="5" maxlength="10">
                         </div>
 						<div class="input-field">
-                            <label for="Phone">Phone</label><br>
-                            <input id="Phone" type="number" class="validate" minlength="3" maxlength="7">
+                            <label for="phone">Phone</label><br>
+                            <input id="phone" type="number" class="validate" minlength="3" maxlength="7">
                         </div>
 						<div class="input-field">
-							<label for="Email">Email</label><br>
-							<input id="Email" type="text" class="validate" minlength="3" maxlength="30">
+							<label for="adress">Adress</label><br>
+							<input id="adress" type="text" class="validate" minlength="3" maxlength="20">
 						</div>
+						<div class="input-field">
+							<label for="email">Email</label><br>
+							<input id="email" type="text" class="validate" minlength="3" maxlength="30">
+						</div>
+					
                         <div class="input-field">
 							<label for="username">Username</label><br>
 							<input id="username" type="text" class="validate" minlength="3" maxlength="10">
 						</div>  
 						<div class="input-field" type="text" id="password">
 							<label for="password">Password</label><br>
-							<input id="password" type="password" class="validate" minlength="3" maxlength="10">
+							<input id="password" type="text" class="validate" minlength="3" maxlength="10">
 						</div>
 						<div class="col s6 offset-s5">
-							<button class="btn #8d6e63 brown lighten-1" id="I-Sign-in" type="button">Sign in</button>							                            
+							<button onclick="apiRegistro.createUser()" class="btn #8d6e63 brown lighten-1" id="I-Sign-in" type="button">Sign in</button>							                            
 						</div>
                         <div class="col s6 offset-s4">
                             <a class="jsx-558481964 title" href="index.html" id="I-Sign-up" style="color:#8d6e63">¿Ya tienes cuenta? Log In</a>
@@ -61,5 +66,5 @@
 		</div>
 	</body>
 	<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="js/apiUsuarios.js"></script>
+	<script type="text/javascript" src="js/apiRegistro.js"></script>
 </html>

@@ -1,5 +1,6 @@
 package edu.eci.arsw.BiblioECI.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,27 @@ public class BookController {
 	private UserRepository UP;
 	
 	@GetMapping("books")
-	public List<Book> getAllBooks(){
-		return this.BP.findAll();
+	public List<Book> getAllBooksAvailable(){
+		List<Book> books = BP.findAll();
+		List<Book> availableBooks = new ArrayList<>();
+		for(Book book: books) {
+			if(book.isAvailable()) {
+				availableBooks.add(book);
+			}
+		}
+		return availableBooks;
+	}
+	
+	@GetMapping("rentbooks")
+	public List<Book> getAllBooksRents(){
+		List<Book> books = BP.findAll();
+		List<Book> rentBooks = new ArrayList<>();
+		for(Book book: books) {
+			if(!book.isAvailable()) {
+				rentBooks.add(book);
+			}
+		}
+		return rentBooks;
 	}
 	
 	@GetMapping("booksid/{id}")
@@ -58,7 +78,7 @@ public class BookController {
 		Book book = BP.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:: " + bookId));
 		List<User> ListUsers = UP.findAll();
 		for(User user: ListUsers) {
-			if(user.getId() == userId && !user.isBookRent() && !user.isAdmins()) {
+			if(user.getId() == userId) {
 				if(book.isAvailable()) {
 					book.setAvailable(false);
 					user.setBookRent(true);

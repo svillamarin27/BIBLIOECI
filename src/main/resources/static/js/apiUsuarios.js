@@ -1,15 +1,15 @@
 /*
-https://biblioeci.herokuapp.com/user/users
-http://localhost:8080/user/users
+https://biblioeci.herokuapp.com/
+http://localhost:8080/
 */
 
 apiUsuarios = (function(){
 
-    userLoggedIn = "";
+    var userLoggedIn;
 
     function validateUsers() {
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'http://localhost:8080/user/users', true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/user/users', true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
@@ -22,7 +22,7 @@ apiUsuarios = (function(){
                 }
                 for(let item of usuarios){
                     console.log(item.password);
-                    if(item.password == contraseña && item.name == usuario){
+                    if(item.password == contraseña && item.username == usuario){
                         console.log('Usuario correcto')
                         ingresoCorrecto = true;
                         break;
@@ -30,7 +30,6 @@ apiUsuarios = (function(){
                 }
                 if (ingresoCorrecto){
                     alert("Bienvenido. Usted inicio sesion como: "+ usuario);
-                    userLoggedIn = usuario
                     window.location.href = "traerLibros.html";
                 }
                 else{
@@ -40,12 +39,7 @@ apiUsuarios = (function(){
         }
     }
 
-    function getUserLoggedIn(){
-        return userLoggedIn;
-    }
-
     return {
-        validateUsers: validateUsers,
-        getUserLoggedIn: getUserLoggedIn
+        validateUsers: validateUsers
     };
 })();
