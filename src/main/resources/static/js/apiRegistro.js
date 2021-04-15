@@ -6,36 +6,52 @@ http://localhost:8080/
 apiRegistro = (function(){
 
     function createUser(){
-        var name = document.getElementById('names').value;
-        var age = document.getElementById('ages').value;
-        var celphone = document.getElementById('celphone').value;
-        var phone = document.getElementById('phone').value;
-        var adress = document.getElementById('adress').value;
-        var email = document.getElementById('email').value;
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var data = {};
-        data.names = name;
-        data.ages = age;
-        data.celphone = celphone;
-        data.phone = phone;
-        data.adress = adress;
-        data.email = email;
-        data.username = username;
-        data.passwords = password;
-        data.admins = false;
-        data.bookrent = false;
-        var json = JSON.stringify(data);
-        console.log(data);
-        console.log(json);
-        const xhttp = new XMLHttpRequest();
-        xhttp.open('POST', 'https://biblioeci.herokuapp.com/user/addusers', true);
-        xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
-        xhttp.send(data);
-        xhttp.onreadystatechange = function(){
-            console.log(this.status);
+        var formatJSON = ["name","ages","celphone","phone","adress","email","username","password","admins","bookrent"];
+        var arrayData = [];
+        arrayData.push(document.getElementById('names').value);
+        arrayData.push(document.getElementById('ages').value);
+        arrayData.push(document.getElementById('celphone').value);
+        arrayData.push(document.getElementById('phone').value);
+        arrayData.push(document.getElementById('adress').value);
+        arrayData.push(document.getElementById('email').value);
+        arrayData.push(document.getElementById('username').value);
+        arrayData.push(document.getElementById('contraseña').value);
+        var data = '{';
+        var userInvalid = false;
+        for(var i = 0; i < arrayData.length; i++){
+            if(arrayData[i] == ""){
+                userInvalid = true;
+                break;
+            }
+            else{
+                data += '"'+formatJSON[i]+'":';
+                data += '"'+arrayData[i]+'"';
+                if( i != arrayData.length-1){
+                    data += ","
+                }
+            }
         }
-        
+        data += "}";
+        console.log(data);
+        if(!userInvalid){
+            var json = JSON.parse(data);
+            const xhttp = new XMLHttpRequest();
+            xhttp.open('POST', 'http://localhost:8080/user/addusers', true);
+            xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
+            xhttp.send(data);
+            xhttp.onreadystatechange = function(){
+                if(this.status = 200 && !userInvalid){
+                    alert("Usuario creado. Gracias por registrarse.");
+                    window.location.href = "traerLibros.html";
+                }
+                else{
+                    alert("Usuario no creado. Revise de nuevo el formulario.");
+                }
+            }
+        }
+        else{
+            alert("Usuario no creado. Revise de nuevo el formulario.");
+        }
     }
 
     return{

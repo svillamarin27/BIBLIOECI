@@ -9,7 +9,7 @@ apiLibros = (function(){
 
     function returnBook(idLibro){
         console.log('Funcion alquilar libro');
-        var url = 'https://biblioeci.herokuapp.com/book/returnbook/'+String(idLibro);
+        var url = 'http://localhost:8080/book/returnbook/'+String(idLibro);
         console.log(url)
         console.log(typeof(url));
         const xhttp = new XMLHttpRequest();
@@ -23,7 +23,7 @@ apiLibros = (function(){
 
     function rentBook(idLibro){
         console.log('Funcion alquilar libro');
-        var url = 'https://biblioeci.herokuapp.com/book/rentbook/'+String(idLibro)+'/3';
+        var url = 'http://localhost:8080/book/rentbook/'+String(idLibro)+'/3';
         console.log(url)
         console.log(typeof(url));
         const xhttp = new XMLHttpRequest();
@@ -38,7 +38,7 @@ apiLibros = (function(){
     function availableBooks() {
         console.log('Funcion libros disponibles');
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/books', true);
+        xhttp.open('GET', 'http://localhost:8080/book/books', true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
@@ -78,7 +78,7 @@ apiLibros = (function(){
     function returnBooks(){
         console.log('Funcion para retornar libros');
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/rentbooks', true);
+        xhttp.open('GET', 'http://localhost:8080/book/rentbooks', true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
