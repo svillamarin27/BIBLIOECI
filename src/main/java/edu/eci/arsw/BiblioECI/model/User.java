@@ -43,13 +43,13 @@ public class User {
 	private boolean admins;
 		
 	@Column(name = "bookrent")
-	private boolean bookRent;
+	private String bookRent;
 	
 	public User() {
 		super();
 	}
 
-	public User(String name, int age, String celphone, String phone, String adress, String email, String username, String passwords, boolean admins, boolean bookRent) {
+	public User(String name, int age, String celphone, String phone, String adress, String email, String username, String passwords, boolean admins, String bookRent) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -130,11 +130,11 @@ public class User {
 		this.admins = admins;
 	}
 
-	public boolean isBookRent() {
+	public String getBookRent() {
 		return bookRent;
 	}
 
-	public void setBookRent(boolean bookRent) {
+	public void setBookRent(String bookRent) {
 		this.bookRent = bookRent;
 	}
 	

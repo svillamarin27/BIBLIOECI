@@ -8,6 +8,7 @@ apiUsuarios = (function(){
     var userLoggedIn;
 
     function validateUsers() {
+        localStorage.clear();
         const xhttp = new XMLHttpRequest();
         xhttp.open('GET', 'http://localhost:8080/user/users', true);
         xhttp.send();
@@ -21,14 +22,19 @@ apiUsuarios = (function(){
                     alert("Todos los campos son requeridos.");
                 }
                 for(let item of usuarios){
-                    console.log(item.password);
                     if(item.password == contraseña && item.username == usuario){
+
                         console.log('Usuario correcto')
                         ingresoCorrecto = true;
+                        var userOrAdmi = item.admins;
+                        var jsonUsuario = JSON.stringify(item);
+                        var idUsuario = item.id;
                         break;
                     }
                 }
                 if (ingresoCorrecto){
+                    localStorage.setItem('tipoUsuario', userOrAdmi);
+                    localStorage.setItem('idUsuario', idUsuario);
                     alert("Bienvenido. Usted inicio sesion como: "+ usuario);
                     window.location.href = "traerLibros.html";
                 }

@@ -9,33 +9,44 @@ apiLibros = (function(){
 
     function returnBook(idLibro){
         console.log('Funcion alquilar libro');
-        var url = 'http://localhost:8080/book/returnbook/'+String(idLibro);
-        console.log(url)
-        console.log(typeof(url));
+        var idUser = localStorage.getItem('idUsuario');
+        var url = 'http://localhost:8080/book/returnbook/'+String(idLibro)+'/'+String(idUser);
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", url, true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
-            console.log(this.status);
-            alert('Libro devuelto, muchas gracias');
+            if(this.status == 202){
+                alert('Libro devuelto, muchas gracias');
+                location.reload();
+            }
+            else{
+                alert('Oops, algo salio mal.');
+                location.reload();
+            }
         }
     }
 
     function rentBook(idLibro){
         console.log('Funcion alquilar libro');
-        var url = 'http://localhost:8080/book/rentbook/'+String(idLibro)+'/3';
-        console.log(url)
-        console.log(typeof(url));
+        var idUser = localStorage.getItem('idUsuario');
+        var url = 'http://localhost:8080/book/rentbook/'+String(idLibro)+'/' + String(idUser);
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", url, true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
-            console.log(this.status);
-            alert('Libro alquilado, cuidelo por favor!!');
+            if(this.status == 202){
+                alert('Libro alquilado, cuidelo por favor!!');
+                location.reload();
+            }
+            else{
+                alert('Ya tiene un libro alquilado o este libro no esta disponible')
+                location.reload();
+            }
         }
     }
 
     function availableBooks() {
+        var tipoUsuario = localStorage.getItem("tipoUsuario");
         console.log('Funcion libros disponibles');
         const xhttp = new XMLHttpRequest();
         xhttp.open('GET', 'http://localhost:8080/book/books', true);
@@ -61,7 +72,7 @@ apiLibros = (function(){
                                 <td>${availability}</td>
                                 <td>${item.resume}</td>
                                 <td>
-                                    <button onclick="apiLibros.rentBook(${String(item.id)});location.href='traerLibros.html'" class="btn #8d6e63 brown lighten-1" id="libro-${item.id}" type="button" >Alquilar</button>
+                                    <button onclick="apiLibros.rentBook(${String(item.id)})" class="btn #8d6e63 brown lighten-1" id="libro-${item.id}" type="button" >Alquilar</button>
                                 </td>
                             </tr>
                             `
@@ -77,8 +88,9 @@ apiLibros = (function(){
 
     function returnBooks(){
         console.log('Funcion para retornar libros');
+        var idUser = localStorage.getItem('idUsuario');
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'http://localhost:8080/book/rentbooks', true);
+        xhttp.open('GET', 'http://localhost:8080/book/rentbooks/'+String(idUser), true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
@@ -101,7 +113,7 @@ apiLibros = (function(){
                                 <td>${availability}</td>
                                 <td>${item.resume}</td>
                                 <td>
-                                    <button onclick="apiLibros.returnBook(${String(item.id)});location.href='traerLibros.html'" class="btn #8d6e63 brown lighten-1" id="libro-${item.id}" type="button" >Devolver</button>
+                                    <button onclick="apiLibros.returnBook(${String(item.id)})" class="btn #8d6e63 brown lighten-1" id="libro-${item.id}" type="button" >Devolver</button>
                                 </td>
                             </tr>
                             `

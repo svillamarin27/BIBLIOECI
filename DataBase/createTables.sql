@@ -9,7 +9,7 @@ Create table users (
 	username varchar(10) UNIQUE not null,
 	passwords varchar(10) not null,
 	admins boolean not null,
-	bookrent boolean not null
+	bookrent varchar(10)
 );
 
 create table book(

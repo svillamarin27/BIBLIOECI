@@ -40,12 +40,14 @@ public class BookController {
 		return availableBooks;
 	}
 	
-	@GetMapping("rentbooks")
-	public List<Book> getAllBooksRents(){
+	@GetMapping("rentbooks/{userid}")
+	public List<Book> getAllBooksRents(@PathVariable(value = "userid") int userId)
+		throws ResourceNotFoundException{
+		User user = UP.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:: " + userId));
 		List<Book> books = BP.findAll();
 		List<Book> rentBooks = new ArrayList<>();
 		for(Book book: books) {
-			if(!book.isAvailable()) {
+			if(!book.isAvailable() && book.getId() == Integer.parseInt(user.getBookRent())) {
 				rentBooks.add(book);
 			}
 		}
@@ -78,10 +80,11 @@ public class BookController {
 		Book book = BP.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:: " + bookId));
 		List<User> ListUsers = UP.findAll();
 		for(User user: ListUsers) {
-			if(user.getId() == userId) {
+			if(user.getId() == userId && user.getBookRent() == null) {
+				
 				if(book.isAvailable()) {
 					book.setAvailable(false);
-					user.setBookRent(true);
+					user.setBookRent(Integer.toString(book.getId()));
 					UP.save(user);
 					BP.save(book);
 					return new ResponseEntity<>(HttpStatus.ACCEPTED);
@@ -91,13 +94,16 @@ public class BookController {
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 	
-	@PutMapping("returnbook/{id}")
-	public ResponseEntity<?> returnBook(@PathVariable(value = "id") int bookId) 
+	@PutMapping("returnbook/{id}/{userid}")
+	public ResponseEntity<?> returnBook(@PathVariable(value = "id") int bookId, @PathVariable(value = "userid") int userId) 
 		throws ResourceNotFoundException{
-		Book book = BP.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:: " + bookId));
-		if(!book.isAvailable()) {
+		Book book = BP.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id: " + bookId));
+		User user = UP.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found for this id: " + userId));
+		if(!book.isAvailable() && Integer.parseInt(user.getBookRent()) == book.getId()) {
 			book.setAvailable(true);
 			BP.save(book);
+			user.setBookRent(null);
+			UP.save(user);
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		}
 		else {

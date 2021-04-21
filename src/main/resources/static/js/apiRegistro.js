@@ -6,7 +6,7 @@ http://localhost:8080/
 apiRegistro = (function(){
 
     function createUser(){
-        var formatJSON = ["name","ages","celphone","phone","adress","email","username","password","admins","bookrent"];
+        var formatJSON = ["name","ages","celphone","phone","adress","email","username","password"];
         var arrayData = [];
         arrayData.push(document.getElementById('names').value);
         arrayData.push(document.getElementById('ages').value);
