@@ -7,6 +7,25 @@ var APIUsers = apiUsuarios;
 
 apiLibros = (function(){
 
+    window.onload = inicio;
+    var tiempo = "";
+
+    function inicio(){
+        var tipoUsuario = localStorage.getItem('tipoUsuario');
+        if(tipoUsuario == "false"){
+            let res = document.querySelector('#menuInicio');
+            res.innerHTML += `
+                        <button onclick="location.href='index.html'" class="btn #8d6e63 brown lighten-1" >usuario</button>
+                    `;
+        }
+        else{
+            let res = document.querySelector('#menuInicio');
+            res.innerHTML += `
+                        <button onclick="location.href='index.html'" class="btn #8d6e63 brown lighten-1" >administrador</button>
+                    `;
+        }             
+    }
+
     function returnBook(idLibro){
         console.log('Funcion alquilar libro');
         var idUser = localStorage.getItem('idUsuario');
@@ -54,7 +73,7 @@ apiLibros = (function(){
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 let libros = JSON.parse(this.responseText);
-                let res = document.querySelector('#res');
+                let res = document.querySelector('#listaLibros');
                 res.innerHTML = '';
                 for (let item of libros){
                     var availability = '';
@@ -95,7 +114,7 @@ apiLibros = (function(){
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 let libros = JSON.parse(this.responseText);
-                let res = document.querySelector('#res');
+                let res = document.querySelector('#listaLibros');
                 res.innerHTML = '';
                 for (let item of libros){
                     var availability = '';
@@ -111,12 +130,15 @@ apiLibros = (function(){
                                 <td>${item.editorial}</td>
                                 <td>${item.languages}</td>
                                 <td>${availability}</td>
-                                <td>${item.resume}</td>
+                                <td>
+                                    <a onclick="apiLibros.daysLoan()" href="#modal1" class="btn modal-trigger brown lighten-1" >Dias prestamo</a>
+                                    
+                                </td>
                                 <td>
                                     <button onclick="apiLibros.returnBook(${String(item.id)})" class="btn #8d6e63 brown lighten-1" id="libro-${item.id}" type="button" >Devolver</button>
                                 </td>
                             </tr>
-                            `
+                            `;
                     }
                     else{
                         availability = 'Disponible'
@@ -126,11 +148,35 @@ apiLibros = (function(){
             }
         }
     }
+
+    function daysLoan(){
+        var idUser = localStorage.getItem('idUsuario');
+        var answer = "";
+        const xhttp = new XMLHttpRequest();
+        let resModals = document.querySelector('#dias')
+        xhttp.open('GET', 'http://localhost:8080/user/calculateloan/'+String(idUser), true);
+        xhttp.send();
+        xhttp.onreadystatechange = function(){
+            resModals.innerHTML = '';
+            answer = String(this.responseText);
+            tiempo = answer;
+            resModals.innerHTML +=  `
+                            <h4>Dias de prestamo</h4>
+                            <p> Vas ${tiempo} segundos de prestamo. Te recomendamos terminar el uso del libro unos dias antes para 
+                            evitar contratiempos.
+                            </p>
+                            `;
+        }
+    }
+
     return {
+        inicio: inicio,
+        daysLoan: daysLoan,
         availableBooks: availableBooks,
         rentBook: rentBook,
         returnBooks: returnBooks,
         returnBook: returnBook
+        
     };
 })();
 

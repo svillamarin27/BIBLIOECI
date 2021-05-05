@@ -80,7 +80,7 @@ public class BookController {
 		Book book = BP.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:: " + bookId));
 		List<User> ListUsers = UP.findAll();
 		for(User user: ListUsers) {
-			if(user.getId() == userId && user.getBookRent() == null) {
+			if(user.getId() == userId && Integer.parseInt(user.getBookRent()) == 0) {
 				
 				if(book.isAvailable()) {
 					book.setAvailable(false);
@@ -102,11 +102,11 @@ public class BookController {
 		if(!book.isAvailable() && Integer.parseInt(user.getBookRent()) == book.getId()) {
 			book.setAvailable(true);
 			BP.save(book);
-			user.setBookRent(null);
+			user.setBookRent("0");
 			UP.save(user);
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		}
-		else {
+		else{
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
 	}

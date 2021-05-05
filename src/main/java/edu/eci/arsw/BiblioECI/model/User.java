@@ -45,6 +45,9 @@ public class User {
 	@Column(name = "bookrent")
 	private String bookRent;
 	
+	@Column(name = "prestamos")
+	private long prestamos;
+	
 	public User() {
 		super();
 	}
@@ -137,6 +140,12 @@ public class User {
 	public void setBookRent(String bookRent) {
 		this.bookRent = bookRent;
 	}
-	
-	
+
+	public long getPrestamos(){
+		return prestamos;
+	}
+
+	public void setPrestamos(long prestamos){
+		this.prestamos = prestamos;
+	}
 }
