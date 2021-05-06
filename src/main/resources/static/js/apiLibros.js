@@ -1,5 +1,5 @@
 /*
-https://biblioeci.herokuapp.com
+https://biblioeci.herokuapp.com/
 http://localhost:8080/
 */
 
@@ -8,7 +8,6 @@ var APIUsers = apiUsuarios;
 apiLibros = (function(){
 
     window.onload = inicio;
-    var tiempo = "";
 
     function inicio(){
         var tipoUsuario = localStorage.getItem('tipoUsuario');
@@ -29,13 +28,18 @@ apiLibros = (function(){
     function returnBook(idLibro){
         console.log('Funcion alquilar libro');
         var idUser = localStorage.getItem('idUsuario');
-        var url = 'http://localhost:8080/book/returnbook/'+String(idLibro)+'/'+String(idUser);
+        var url = 'https://biblioeci.herokuapp.com/book/returnbook/'+String(idLibro)+'/'+String(idUser);
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", url, true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.status == 202){
                 alert('Libro devuelto, muchas gracias');
+                var url2 = 'https://biblioeci.herokuapp.com/user/stoploan/'+String(idUser);
+                const xhttp2 = new XMLHttpRequest();
+                xhttp2.open("PUT", url2, true);
+                xhttp2.send();
+                xhttp2.onreadystatechange = function(){}
                 location.reload();
             }
             else{
@@ -48,13 +52,18 @@ apiLibros = (function(){
     function rentBook(idLibro){
         console.log('Funcion alquilar libro');
         var idUser = localStorage.getItem('idUsuario');
-        var url = 'http://localhost:8080/book/rentbook/'+String(idLibro)+'/' + String(idUser);
+        var url = 'https://biblioeci.herokuapp.com/book/rentbook/'+String(idLibro)+'/' + String(idUser);
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", url, true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.status == 202){
                 alert('Libro alquilado, cuidelo por favor!!');
+                var url2 = 'https://biblioeci.herokuapp.com/user/startloan/'+String(idUser);
+                const xhttp2 = new XMLHttpRequest();
+                xhttp2.open("PUT", url2, true);
+                xhttp2.send();
+                xhttp2.onreadystatechange = function(){}
                 location.reload();
             }
             else{
@@ -68,7 +77,7 @@ apiLibros = (function(){
         var tipoUsuario = localStorage.getItem("tipoUsuario");
         console.log('Funcion libros disponibles');
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'http://localhost:8080/book/books', true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/books', true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
@@ -109,7 +118,7 @@ apiLibros = (function(){
         console.log('Funcion para retornar libros');
         var idUser = localStorage.getItem('idUsuario');
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'http://localhost:8080/book/rentbooks/'+String(idUser), true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/rentbooks/'+String(idUser), true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
@@ -154,18 +163,34 @@ apiLibros = (function(){
         var answer = "";
         const xhttp = new XMLHttpRequest();
         let resModals = document.querySelector('#dias')
-        xhttp.open('GET', 'http://localhost:8080/user/calculateloan/'+String(idUser), true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/user/calculateloan/'+String(idUser), true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             resModals.innerHTML = '';
             answer = String(this.responseText);
-            tiempo = answer;
-            resModals.innerHTML +=  `
+            minutos = parseInt(answer, 10);
+            minutos = minutos / 60;
+            minutos = Math.trunc(minutos);
+            if(minutos <= 2){
+                resModals.innerHTML +=  `
                             <h4>Dias de prestamo</h4>
-                            <p> Vas ${tiempo} segundos de prestamo. Te recomendamos terminar el uso del libro unos dias antes para 
+                            <p> Vas ${minutos} minutos de prestamo. Te recomendamos terminar el uso del libro unos dias antes para 
                             evitar contratiempos.
                             </p>
                             `;
+            }
+            else{
+                resModals.innerHTML +=  `
+                            <h4>Dias de prestamo</h4>
+                            <p> Vas ${minutos-2} minutos de retraso. Devuelva el libro por favor.
+                            </p>
+                            <h4>Multa</h4>
+                            <p> Por ${minutos-2} minutos de retraso acumula una multa de $${(minutos-2)*100} pesos.
+                            Le recomendamos ponerse al día!
+                            </p>
+                            `;
+            }
+            
         }
     }
 
