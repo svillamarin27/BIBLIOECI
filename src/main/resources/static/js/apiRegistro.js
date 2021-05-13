@@ -36,7 +36,7 @@ apiRegistro = (function(){
         if(!userInvalid){
             var json = JSON.parse(data);
             const xhttp = new XMLHttpRequest();
-            xhttp.open('POST', 'http://localhost:8080/user/addusers', true);
+            xhttp.open('POST', 'https://biblioeci.herokuapp.com/user/addusers', true);
             xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
             xhttp.send(data);
             xhttp.onreadystatechange = function(){

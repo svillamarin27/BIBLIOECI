@@ -31,14 +31,14 @@ apiLibros = (function(){
     function returnBook(idLibro){
         console.log('Funcion alquilar libro');
         var idUser = localStorage.getItem('idUsuario');
-        var url = 'http://localhost:8080/book/returnbook/'+String(idLibro)+'/'+String(idUser);
+        var url = 'https://biblioeci.herokuapp.com/book/returnbook/'+String(idLibro)+'/'+String(idUser);
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", url, true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.status == 202){
                 alert('Libro devuelto, muchas gracias');
-                var url2 = 'http://localhost:8080/user/stoploan/'+String(idUser);
+                var url2 = 'https://biblioeci.herokuapp.com/user/stoploan/'+String(idUser);
                 const xhttp2 = new XMLHttpRequest();
                 xhttp2.open("PUT", url2, true);
                 xhttp2.send();
@@ -55,14 +55,14 @@ apiLibros = (function(){
     function rentBook(idLibro){
         console.log('Funcion alquilar libro');
         var idUser = localStorage.getItem('idUsuario');
-        var url = 'http://localhost:8080/book/rentbook/'+String(idLibro)+'/' + String(idUser);
+        var url = 'https://biblioeci.herokuapp.com/book/rentbook/'+String(idLibro)+'/' + String(idUser);
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", url, true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.status == 202){
                 alert('Libro alquilado, cuidelo por favor!!');
-                var url2 = 'http://localhost:8080/user/startloan/'+String(idUser);
+                var url2 = 'https://biblioeci.herokuapp.com/user/startloan/'+String(idUser);
                 const xhttp2 = new XMLHttpRequest();
                 xhttp2.open("PUT", url2, true);
                 xhttp2.send();
@@ -80,7 +80,7 @@ apiLibros = (function(){
         var tipoUsuario = localStorage.getItem("tipoUsuario");
         console.log('Funcion libros disponibles');
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'http://localhost:8080/book/books', true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/books', true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
@@ -142,7 +142,7 @@ apiLibros = (function(){
         console.log('Funcion para retornar libros');
         var idUser = localStorage.getItem('idUsuario');
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'http://localhost:8080/book/rentbooks/'+String(idUser), true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/rentbooks/'+String(idUser), true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
@@ -186,7 +186,7 @@ apiLibros = (function(){
         var answer = "";
         const xhttp = new XMLHttpRequest();
         let resModals = document.querySelector('#dias')
-        xhttp.open('GET', 'http://localhost:8080/user/calculateloan/'+String(idUser), true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/calculateloan/'+String(idUser), true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             resModals.innerHTML = '';
