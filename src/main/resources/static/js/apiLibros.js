@@ -186,7 +186,7 @@ apiLibros = (function(){
         var answer = "";
         const xhttp = new XMLHttpRequest();
         let resModals = document.querySelector('#dias')
-        xhttp.open('GET', 'https://biblioeci.herokuapp.com/calculateloan/'+String(idUser), true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/user/calculateloan/'+String(idUser), true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             resModals.innerHTML = '';
