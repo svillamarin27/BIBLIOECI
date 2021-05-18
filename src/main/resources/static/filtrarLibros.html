@@ -17,9 +17,8 @@
                     <div class="row"></div>
                     <div class="row">
                         <div class="col s12">
-                            <div class="col s12 offset-s0.5" id="menuInicio">
-                                <button onclick="apiLibros.availableBooks()" class="btn #8d6e63 brown lighten-1" >Mostrar libros disponibles</button>
-                                <button onclick="apiLibros.returnBooks()" class="btn #8d6e63 brown lighten-1" >Devolver libros</button>
+                            <div class="col s12 offset-s0.5" id="menuInicioFiltros">
+                                <button onclick="location.href='traerLibros.html'" class="btn #8d6e63 brown lighten-1" >Menu principal</button>
                                 <a href="#modal2" class="btn modal-trigger brown lighten-1" >Filtrar busqueda</a>
                             </div>
                         </div>
@@ -48,18 +47,10 @@
                     <div id="modal2" class="modal">
                         <div class="modal-content" id="filtros">
                             <h1>Filtros disponibles:</h1>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Nombre libro</button>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Nombre autor</button>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Lenguajes</button>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Categoria</button>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
-                        </div>
-                    </div>
-                    <div id="modal1" class="modal">
-                        <div class="modal-content" id="dias">
-                            
+                            <button onclick="apiFiltros.nameBook()" class="btn #8d6e63 brown lighten-1" >  Nombre libro</button>
+                            <button onclick="apiFiltros.nameAuthor()" class="btn #8d6e63 brown lighten-1" >  Nombre autor</button>
+                            <button onclick="apiFiltros.languages()" class="btn #8d6e63 brown lighten-1" >  Lenguajes</button>
+                            <button onclick="apiFiltros.category()" class="btn #8d6e63 brown lighten-1" >  Categoria</button>
                         </div>
                         <div class="modal-footer">
                             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
@@ -72,9 +63,7 @@
     <!--JavaScript at end of body for optimized loading-->
     <script src="js/apiUsuarios.js"></script>
     <script src="js/apiLibros.js"></script>
-    <script src="js/apiFiltros.js"></script>
-    <script src="http://localhost:8080/webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="http://localhost:8080/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="js/apiFiltros.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

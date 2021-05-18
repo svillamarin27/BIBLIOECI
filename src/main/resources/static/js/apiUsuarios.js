@@ -29,10 +29,12 @@ apiUsuarios = (function(){
                         var userOrAdmi = item.admins;
                         var jsonUsuario = JSON.stringify(item);
                         var idUsuario = item.id;
+                        var nameUser = item.username;
                         break;
                     }
                 }
                 if (ingresoCorrecto){
+                    localStorage.setItem('nombreUsuario', nameUser)
                     localStorage.setItem('tipoUsuario', userOrAdmi);
                     localStorage.setItem('idUsuario', idUsuario);
                     alert("Bienvenido. Usted inicio sesion como: "+ usuario);

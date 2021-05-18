@@ -8,24 +8,28 @@ var APIUsers = apiUsuarios;
 apiLibros = (function(){
 
     window.onload = inicio;
+    var stompClient = null;
+
+    function connect() {
+        var socket = new SockJS('/gs-guide-websocket');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/topic', function (greeting) {
+                availableBooks();
+            });
+        });
+    }
 
     function inicio(){
-        var tipoUsuario = localStorage.getItem('tipoUsuario');
+        connect();
+        var nombreUsuario = localStorage.getItem('nombreUsuario');
         localStorage.setItem('paginaLibro',0);
-        if(tipoUsuario == "false"){
-            let res = document.querySelector('#menuInicio');
-            res.innerHTML += `
-                        <button class="btn #8d6e63 brown lighten-1" >usuario</button>
-                        <button onclick="location.href='index.html'" class="right-align btn #8d6e63 brown lighten-1" >Cerrar sesion</button>
-                    `;
-        }
-        else{
-            let res = document.querySelector('#menuInicio');
-            res.innerHTML += `
-                        <button class="btn #8d6e63 brown lighten-1" >administrador</button>
-                        <button onclick="location.href='index.html'" class="btn #8d6e63 brown lighten-1" >Cerrar sesion</button>
-                    `;
-        }             
+        let res = document.querySelector('#menuInicio');
+        res.innerHTML += `
+                    <button class="btn #8d6e63 brown lighten-1" >${nombreUsuario}</button>
+                    <button onclick="location.href='index.html'" class="btn #8d6e63 brown lighten-1" >Cerrar sesion</button>
+                `;
+                     
     }
 
     function returnBook(idLibro){
@@ -37,13 +41,13 @@ apiLibros = (function(){
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.status == 202){
+                stompClient.send('/app/hello',{} ,'cosa');
                 alert('Libro devuelto, muchas gracias');
                 var url2 = 'https://biblioeci.herokuapp.com/user/stoploan/'+String(idUser);
                 const xhttp2 = new XMLHttpRequest();
                 xhttp2.open("PUT", url2, true);
                 xhttp2.send();
                 xhttp2.onreadystatechange = function(){}
-                location.reload();
             }
             else{
                 alert('Oops, algo salio mal.');
@@ -61,20 +65,22 @@ apiLibros = (function(){
         xhttp.send();
         xhttp.onreadystatechange = function(){
             if(this.status == 202){
+                stompClient.send('/app/hello',{} ,'cosa');
                 alert('Libro alquilado, cuidelo por favor!!');
                 var url2 = 'https://biblioeci.herokuapp.com/user/startloan/'+String(idUser);
                 const xhttp2 = new XMLHttpRequest();
                 xhttp2.open("PUT", url2, true);
                 xhttp2.send();
-                xhttp2.onreadystatechange = function(){}
-                location.reload();
+                xhttp2.onreadystatechange = function(){} 
             }
             else{
-                alert('Ya tiene un libro alquilado o este libro no esta disponible')
+                alert('Ya tiene un libro alquilado o este libro no esta disponible');
                 location.reload();
+
             }
         }
     }
+    
 
     function availableBooks() {
         var tipoUsuario = localStorage.getItem("tipoUsuario");
@@ -186,7 +192,7 @@ apiLibros = (function(){
         var answer = "";
         const xhttp = new XMLHttpRequest();
         let resModals = document.querySelector('#dias')
-        xhttp.open('GET', 'https://biblioeci.herokuapp.com/calculateloan/'+String(idUser), true);
+        xhttp.open('GET', 'https://biblioeci.herokuapp.com/user/calculateloan/'+String(idUser), true);
         xhttp.send();
         xhttp.onreadystatechange = function(){
             resModals.innerHTML = '';
@@ -231,6 +237,7 @@ apiLibros = (function(){
 
     return {
         inicio: inicio,
+        connect: connect,
         btnNext: btnNext,
         btnPrev: btnPrev,
         daysLoan: daysLoan,
@@ -238,7 +245,6 @@ apiLibros = (function(){
         rentBook: rentBook,
         returnBooks: returnBooks,
         returnBook: returnBook
-        
     };
 })();
 
