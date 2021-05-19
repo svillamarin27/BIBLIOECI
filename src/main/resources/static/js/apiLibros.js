@@ -71,7 +71,7 @@ apiLibros = (function(){
                 const xhttp2 = new XMLHttpRequest();
                 xhttp2.open("PUT", url2, true);
                 xhttp2.send();
-                xhttp2.onreadystatechange = function(){} 
+                xhttp2.onreadystatechange = function(){}
             }
             else{
                 alert('Ya tiene un libro alquilado o este libro no esta disponible');
@@ -84,6 +84,7 @@ apiLibros = (function(){
 
     function availableBooks() {
         var tipoUsuario = localStorage.getItem("tipoUsuario");
+        localStorage.setItem('paginaLibro',0);
         console.log('Funcion libros disponibles');
         const xhttp = new XMLHttpRequest();
         xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/books', true);

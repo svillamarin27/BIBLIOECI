@@ -60,13 +60,83 @@ public class BookController {
 		Book book = BP.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id:: " + bookId));
 		return ResponseEntity.ok().body(book);
 	}
-
 	
 	@GetMapping("booksname/{name}")
 	public ResponseEntity<Book> getBooksByName(@PathVariable(value = "name") String bookName)
 		throws ResourceNotFoundException{
 		Book book = BP.getBooksByName(bookName).orElseThrow(() -> new ResourceNotFoundException("Book not found for this name:: " + bookName));
 		return ResponseEntity.ok().body(book);
+	}
+
+	@GetMapping("authorname/{name}")
+	public ResponseEntity<Book> getBooksByAuthorName(@PathVariable(value = "name") String authorName)
+		throws ResourceNotFoundException{
+		Book book = BP.getBooksByAuthorName(authorName).orElseThrow(() -> new ResourceNotFoundException("Book not found for this name:: " + authorName));
+		return ResponseEntity.ok().body(book);
+	}
+
+	@GetMapping("englishBooks")
+	public List<Book> getEnglishBooks()
+		throws ResourceNotFoundException{
+		List<Book> answer = new ArrayList<>();
+		List<Book> opcion1 =  BP.getBooksEnglish("EN");
+		for (Book b:opcion1){
+			answer.add(b);
+		}
+		List<Book> opcion2 =  BP.getBooksEnglish("FR-EN");
+		for (Book b:opcion2){
+			answer.add(b);
+		}
+		List<Book> opcion3 =  BP.getBooksEnglish("ES-EN");
+		for (Book b:opcion3){
+			answer.add(b);
+		}
+		return answer;
+	}
+
+	@GetMapping("frenchBooks")
+	public List<Book> getFrenchBooks()
+		throws ResourceNotFoundException{
+		List<Book> answer = new ArrayList<>();
+		List<Book> opcion1 =  BP.getBooksFrench("FR");
+		for (Book b:opcion1){
+			answer.add(b);
+		}
+		List<Book> opcion2 =  BP.getBooksFrench("FR-EN");
+		for (Book b:opcion2){
+			answer.add(b);
+		}
+		List<Book> opcion3 =  BP.getBooksFrench("ES-FR");
+		for (Book b:opcion3){
+			answer.add(b);
+		}
+		return answer;
+	}
+
+	@GetMapping("spanishBooks")
+	public List<Book> getSpanishBooks()
+		throws ResourceNotFoundException{
+		List<Book> answer = new ArrayList<>();
+		List<Book> opcion1 =  BP.getBooksSpanish("ES");
+		for (Book b:opcion1){
+			answer.add(b);
+		}
+		List<Book> opcion2 =  BP.getBooksSpanish("ES-FR");
+		for (Book b:opcion2){
+			answer.add(b);
+		}
+		List<Book> opcion3 =  BP.getBooksSpanish("ES-EN");
+		for (Book b:opcion3){
+			answer.add(b);
+		}
+		return answer;
+	}
+
+	@GetMapping("bookscategory/{category}")
+	public List<Book> getBooksByCategory(@PathVariable(value = "category") String category)
+		throws ResourceNotFoundException{
+		List<Book> answer = BP.getBooksByCategory(category);
+		return answer;
 	}
 	
 	@PostMapping("addbooks")

@@ -20,7 +20,7 @@
                             <div class="col s12 offset-s0.5" id="menuInicio">
                                 <button onclick="apiLibros.availableBooks()" class="btn #8d6e63 brown lighten-1" >Mostrar libros disponibles</button>
                                 <button onclick="apiLibros.returnBooks()" class="btn #8d6e63 brown lighten-1" >Devolver libros</button>
-                                <a href="#modal2" class="btn modal-trigger brown lighten-1" >Filtrar busqueda</a>
+                                <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >Filtrar busqueda</button>
                             </div>
                         </div>
                         <table>
@@ -44,19 +44,6 @@
                         </div>
                     </div>
                 </div>
-                <div id="modals">
-                    <div id="modal2" class="modal">
-                        <div class="modal-content" id="filtros">
-                            <h1>Filtros disponibles:</h1>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Nombre libro</button>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Nombre autor</button>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Lenguajes</button>
-                            <button onclick="location.href='filtrarLibros.html'" class="btn #8d6e63 brown lighten-1" >  Categoria</button>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
-                        </div>
-                    </div>
                     <div id="modal1" class="modal">
                         <div class="modal-content" id="dias">
                             
