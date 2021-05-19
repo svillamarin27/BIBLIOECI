@@ -84,7 +84,6 @@ apiLibros = (function(){
 
     function availableBooks() {
         var tipoUsuario = localStorage.getItem("tipoUsuario");
-        localStorage.setItem('paginaLibro',0);
         console.log('Funcion libros disponibles');
         const xhttp = new XMLHttpRequest();
         xhttp.open('GET', 'https://biblioeci.herokuapp.com/book/books', true);
