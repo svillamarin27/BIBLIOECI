@@ -30,7 +30,7 @@ Con nuestra aplicación el usuario tendrá acceso a grandes estanterías de libr
 
 # Historias de usuario
 
-![image](https://user-images.githubusercontent.com/37603257/108651015-e3259080-748e-11eb-8637-4def7e474017.png)
+![image](https://user-images.githubusercontent.com/37603257/118899554-922e0880-b8d4-11eb-9e10-1970ddec4239.png)
 
 # Historias de administrador
 
@@ -44,9 +44,6 @@ Con nuestra aplicación el usuario tendrá acceso a grandes estanterías de libr
 
 ![image](https://user-images.githubusercontent.com/37603257/111559225-1ee60a00-875e-11eb-9578-be4eb04be4f8.png)
 
-# Modelo entidad relacion
-
-![image](https://user-images.githubusercontent.com/37603257/111564827-66719380-8768-11eb-8215-42c072d5325b.png)
 
 # Mockups
 
